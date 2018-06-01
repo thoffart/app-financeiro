@@ -6,11 +6,17 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 
 import { MyApp } from "./app.component";
-import { AuthProvider } from '../providers/auth/auth';
+import { AuthProvider } from "../providers/auth/auth";
+import { HomePageModule } from "../pages/home/home.module";
 
 @NgModule({
   declarations: [MyApp],
-  imports: [BrowserModule, LoginPageModule, IonicModule.forRoot(MyApp)],
+  imports: [
+    BrowserModule,
+    LoginPageModule,
+    HomePageModule,
+    IonicModule.forRoot(MyApp)
+  ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
   providers: [

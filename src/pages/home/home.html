@@ -1,0 +1,22 @@
+<!--
+  Generated template for the HomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>home</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="card-background-page">
+  <ion-card *ngFor="let categoria of categorias">
+    <img src="../../assets/imgs/{{categoria}}.jpg" />
+    <div class="card-title">{{categoria}}</div>
+    <div class="card-subtitle">64 Entradas</div>
+  </ion-card>
+</ion-content>
