@@ -14,6 +14,13 @@
 
 
 <ion-content padding class="card-background-page">
+
+  <ion-item class="label">
+    <ion-label floating>
+      <ion-icon name="ios-search-outline" item-left></ion-icon>Search</ion-label>
+    <ion-input class="searchbar" color="white" type="text"></ion-input>
+
+  </ion-item>
   <ion-card *ngFor="let categoria of categorias">
     <img src="../../assets/imgs/{{categoria}}.jpg" />
     <div class="card-title">{{categoria}}</div>
