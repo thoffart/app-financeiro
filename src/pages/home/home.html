@@ -13,10 +13,10 @@
 </ion-header>
 
 
-<ion-content padding class="card-background-page">
+<ion-content class="card-background-page">
   <ion-card>
     <ion-card-header>
-      Doughnut Chart
+      Receita/Gastos
     </ion-card-header>
     <ion-card-content>
       <canvas #doughnutCanvas></canvas>
@@ -28,7 +28,7 @@
     <ion-label floating>
       <h3>Adicionar gasto:</h3>
       <ion-icon name="ios-search-outline" item-left></ion-icon>Search</ion-label>
-    <ion-input class="searchbar" color="white" type="text"></ion-input>
+    <ion-input class="searchbar" color="white" type="text" id="search"></ion-input>
   </ion-item>
   <ion-card *ngFor="let categoria of categorias">
     <img src="../../assets/imgs/{{categoria}}.jpg" />
