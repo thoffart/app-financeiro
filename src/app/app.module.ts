@@ -1,3 +1,4 @@
+import { TabsPageModule } from "./../pages/tabs/tabs.module";
 import { LoginPageModule } from "./../pages/login/login.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { ErrorHandler, NgModule } from "@angular/core";
@@ -8,14 +9,19 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { MyApp } from "./app.component";
 import { AuthProvider } from "../providers/auth/auth";
 import { HomePageModule } from "../pages/home/home.module";
+import { EditPageModule } from "../pages/edit/edit.module";
+import { TimelinePageModule } from "../pages/timeline/timeline.module";
 
 @NgModule({
   declarations: [MyApp],
   imports: [
     BrowserModule,
+    IonicModule.forRoot(MyApp),
+    TabsPageModule,
     LoginPageModule,
     HomePageModule,
-    IonicModule.forRoot(MyApp)
+    TimelinePageModule,
+    EditPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
