@@ -1,3 +1,4 @@
+import { RegisterPageModule } from './../pages/register/register.module';
 import { TabsPageModule } from "./../pages/tabs/tabs.module";
 import { LoginPageModule } from "./../pages/login/login.module";
 import { BrowserModule } from "@angular/platform-browser";
@@ -19,6 +20,7 @@ import { TimelinePageModule } from "../pages/timeline/timeline.module";
     IonicModule.forRoot(MyApp),
     TabsPageModule,
     LoginPageModule,
+    RegisterPageModule,
     HomePageModule,
     TimelinePageModule,
     EditPageModule

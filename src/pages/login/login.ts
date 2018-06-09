@@ -1,6 +1,7 @@
 import { TabsPage } from "./../tabs/tabs";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { RegisterPage } from "../register/register";
 
 /**
  * Generated class for the LoginPage page.
@@ -15,7 +16,10 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
   templateUrl: "login.html"
 })
 export class LoginPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  registerpage: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.registerpage = RegisterPage;
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
@@ -24,4 +28,6 @@ export class LoginPage {
   loadTabspage() {
     this.navCtrl.push(TabsPage);
   }
+
+  loadRegisterpage() {}
 }
