@@ -21,49 +21,50 @@
       </div>
     </ion-slide>
     <ion-slide>
-      <form #f="ngForm" (ngSubmit)="onAddItem(f)">
+      <form [formGroup]="registerForm" (ngSubmit)="Registrar()">
         <ion-list>
           <ion-list-header>
             Dados Pessoais
           </ion-list-header>
           <ion-item>
             <ion-label fixed>Name</ion-label>
-            <ion-input type="text" name="Name" ngModel required></ion-input>
+            <ion-input type="text" formControlName="nome"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label fixed>Email</ion-label>
+            <ion-input type="email" formControlName="email"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label fixed>Password</ion-label>
-            <ion-input type="password" name="password" ngModel required></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label fixed>Verify Pass</ion-label>
-            <ion-input type="text" name="verifypassword" ngModel required></ion-input>
+            <ion-input type="password" formControlName="password"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label fixed>Date of Birth</ion-label>
-            <ion-input type="date" name="date" ngModel required></ion-input>
+            <ion-input type="date" formControlName="nascimento"></ion-input>
           </ion-item>
-          <ion-list>
-            <ion-list-header>
-              Formas de Pagamento
-            </ion-list-header>
-            <ion-item>
-              <ion-label>Boleto</ion-label>
-              <ion-checkbox></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Cartão de Crédito</ion-label>
-              <ion-checkbox></ion-checkbox>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Cartão de Débito</ion-label>
-              <ion-checkbox></ion-checkbox>
-            </ion-item>
-          </ion-list>
         </ion-list>
-        <button ion-button type="submit" block [disabled]="!f.valid">Register</button>
+        <br>
+        <ion-list>
+          <ion-list-header>
+            Formas de Pagamento
+          </ion-list-header>
+          <ion-item>
+            <ion-label>Boleto</ion-label>
+            <ion-checkbox formControlName="boleto" [(ngModel)]="bcheck"></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Cartão de Crédito</ion-label>
+            <ion-checkbox formControlName="ccredito" [(ngModel)]="cccheck"></ion-checkbox>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Cartão de Débito</ion-label>
+            <ion-checkbox formControlName="cdebito" [(ngModel)]="cdcheck"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button type="submit" [disabled]="!registerForm.valid">Submit</button>
       </form>
     </ion-slide>
   </ion-slides>

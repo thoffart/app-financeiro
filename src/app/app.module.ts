@@ -1,4 +1,5 @@
-import { RegisterPageModule } from './../pages/register/register.module';
+import { HttpClientModule } from "@angular/common/http";
+import { RegisterPageModule } from "./../pages/register/register.module";
 import { TabsPageModule } from "./../pages/tabs/tabs.module";
 import { LoginPageModule } from "./../pages/login/login.module";
 import { BrowserModule } from "@angular/platform-browser";
@@ -23,6 +24,7 @@ import { TimelinePageModule } from "../pages/timeline/timeline.module";
     RegisterPageModule,
     HomePageModule,
     TimelinePageModule,
+    HttpClientModule,
     EditPageModule
   ],
   bootstrap: [IonicApp],

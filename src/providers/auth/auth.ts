@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Observable } from "rxjs/Observable";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 
 /*
   Generated class for the AuthProvider provider.
@@ -9,9 +10,12 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class AuthProvider {
-
+  url = "http://127.0.0.1:8000/api/usuarios";
   constructor(public http: HttpClient) {
-    console.log('Hello AuthProvider Provider');
+    console.log("Hello AuthProvider Provider");
   }
 
+  postUser(usuario: any): Observable<any> {
+    return this.http.post(this.url, usuario);
+  }
 }

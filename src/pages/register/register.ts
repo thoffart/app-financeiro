@@ -1,12 +1,12 @@
+import { AuthProvider } from "./../../providers/auth/auth";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from "@angular/forms";
 
 @IonicPage()
 @Component({
@@ -28,9 +28,34 @@ export class RegisterPage {
       icon: "fa fa-list-ul"
     }
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  registerForm: FormGroup;
+  bcheck = true;
+  cccheck = true;
+  cdcheck = true;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    private auth: AuthProvider
+  ) {
+    this.registerForm = fb.group({
+      nome: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required]),
+      nascimento: new FormControl(null, [Validators.required]),
+      boleto: new FormControl(null),
+      ccredito: new FormControl(null),
+      cdebito: new FormControl(null)
+    });
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad RegisterPage");
+  }
+
+  Registrar() {
+    console.log("asioe");
+    console.log(this.registerForm);
+    this.auth.postUser(this.registerForm.value).subscribe();
   }
 }
