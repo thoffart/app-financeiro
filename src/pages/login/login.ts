@@ -2,6 +2,13 @@ import { TabsPage } from "./../tabs/tabs";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { RegisterPage } from "../register/register";
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators
+} from "@angular/forms";
+import { AuthProvider } from "../../providers/auth/auth";
 
 /**
  * Generated class for the LoginPage page.
@@ -17,16 +24,33 @@ import { RegisterPage } from "../register/register";
 })
 export class LoginPage {
   registerpage: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  loginForm: FormGroup;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    private auth: AuthProvider
+  ) {
     this.registerpage = RegisterPage;
+    this.loginForm = fb.group({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required])
+    });
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
   }
 
-  loadTabspage() {
-    this.navCtrl.push(TabsPage);
+  Login() {
+    this.auth.authUser(this.loginForm.value).subscribe(
+      response => {
+        this.navCtrl.push(TabsPage);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   loadRegisterpage() {}

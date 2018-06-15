@@ -1,3 +1,4 @@
+import { TabsPage } from "./../tabs/tabs";
 import { AuthProvider } from "./../../providers/auth/auth";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
@@ -56,6 +57,8 @@ export class RegisterPage {
   Registrar() {
     console.log("asioe");
     console.log(this.registerForm);
-    this.auth.postUser(this.registerForm.value).subscribe();
+    this.auth.postUser(this.registerForm.value).subscribe(response => {
+      this.navCtrl.push(TabsPage);
+    });
   }
 }

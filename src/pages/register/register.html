@@ -21,7 +21,7 @@
       </div>
     </ion-slide>
     <ion-slide>
-      <form [formGroup]="registerForm" (ngSubmit)="Registrar()">
+      <form [formGroup]="registerForm">
         <ion-list>
           <ion-list-header>
             Dados Pessoais
@@ -64,7 +64,7 @@
           </ion-item>
         </ion-list>
 
-        <button ion-button type="submit" [disabled]="!registerForm.valid">Submit</button>
+        <button ion-button (click)="Registrar()" [disabled]="!registerForm.valid">Submit</button>
       </form>
     </ion-slide>
   </ion-slides>
