@@ -28,11 +28,10 @@
     <ion-label floating>
       <h3>Adicionar gasto:</h3>
       <ion-icon name="ios-search-outline" item-left></ion-icon>Search</ion-label>
-    <ion-input class="searchbar" color="white" type="text" id="search"></ion-input>
+    <ion-input #search class="searchbar" color="white" id="search" #search></ion-input>
   </ion-item>
   <ion-card *ngFor="let categoria of categorias">
-    <img src="../../assets/imgs/{{categoria}}.jpg" />
-    <div class="card-title">{{categoria}}</div>
-    <div class="card-subtitle">64 Entradas</div>
+    <img src="../../assets/imgs/{{categoria.nome}}.jpg" />
+    <div class="card-title">{{categoria.nome}}</div>
   </ion-card>
 </ion-content>

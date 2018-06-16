@@ -13,6 +13,7 @@ import { AuthProvider } from "../providers/auth/auth";
 import { HomePageModule } from "../pages/home/home.module";
 import { EditPageModule } from "../pages/edit/edit.module";
 import { TimelinePageModule } from "../pages/timeline/timeline.module";
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [MyApp],
@@ -33,7 +34,8 @@ import { TimelinePageModule } from "../pages/timeline/timeline.module";
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthProvider
+    AuthProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}
