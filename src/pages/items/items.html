@@ -40,27 +40,44 @@
 
   <!--</form>-->
 
-  <ion-footer>
+  <ion-list>
+    <ion-item-sliding *ngFor="let token of list?.reverse()">
+
+      <ion-item (swiperight)='okItem()'> 
+        {{ token }}
+      </ion-item>
+
+      <ion-item-options side="left">
+        <button (click)='okItem()' ion-button>Ok</button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+
+  <form (ngSubmit)="addItem(item.value)">
 
     <ion-grid>
       <ion-row>
 
-        <ion-col col-8>
-          <form (ngSubmit)="addItem()">
+          <ion-col col-8>
             <ion-item class="items-input">
-              <ion-input placeholder="Items" (onkeyup.enter)="addItem()"></ion-input>
+              <ion-input placeholder="Items" name="item" [(ngModel)]="itemInput" 
+                #item (onkeyup.enter)="addItem(item.value)">
+              </ion-input>
             </ion-item>
-          </form>
-        </ion-col>
+          </ion-col>
 
-        <ion-col col-4 ion-fixed="bottom">
-          <button ion-button>Ok</button>
-        </ion-col>
+          <ion-col col-4 ion-fixed="bottom">
+            <button type="submit" (click)="addItem(item.value)" ion-button>Ok</button>
+          </ion-col>
 
       </ion-row>
     </ion-grid>
 
-  </ion-footer>
+  </form>
 
-
-</ion-content>
+</ion-footer>

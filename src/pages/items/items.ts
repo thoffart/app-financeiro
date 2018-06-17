@@ -16,17 +16,18 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 })
 export class ItemsPage {
 
-  itemForm: FormGroup;
-  items: FormArray;
+  // itemForm: FormGroup;
+  // items: FormArray;
   check: boolean = false;
+  itemInput: string;
   list: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder) {
 
-    this.itemForm = this.fb.group({
-      listName: '',
-      items: this.fb.array([ this.createItem() ]),
-    });
+    // this.itemForm = this.fb.group({
+    //   listName: '',
+    //   items: this.fb.array([ this.createItem() ]),
+    // });
 
   }
 
@@ -38,17 +39,25 @@ export class ItemsPage {
 
   }
 
-  addItem(): void {
+  // addItem(): void {
+  //
+  //   this.items = this.itemForm.get('items') as FormArray;
+  //   this.items.push(this.createItem());
+  //   this.check = true;
+  //
+  // }
 
-    this.items = this.itemForm.get('items') as FormArray;
-    this.items.push(this.createItem());
-    this.check = true;
+  addItem(newItem: string): void {
+
+    if(newItem) {
+      this.list.push(newItem);
+      this.itemInput = '';
+    }
 
   }
 
-  onSubmit() {
-    console.log('button');
+  okItem(): void {
+    this.list.push('funfou');
   }
-
 
 }
