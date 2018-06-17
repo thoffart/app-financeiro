@@ -1,0 +1,75 @@
+page-login {
+  .bg-imagem {
+    background-image: url(../../assets/imgs/login.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .logo {
+    display: block;
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+  }
+  ion-icon {
+    font-size: 400%; //Preferred size here
+  }
+
+  .no-scroll .scroll-content {
+    overflow: hidden;
+  }
+
+  .label {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  .layer {
+    // background-color: rgba(206, 205, 188, 0.7);
+    //background-color: rgba(255, 255, 255, 0.692);
+    // background-color: rgba(0, 255, 221, 0.5);
+    background-color: rgba(76, 179, 238, 0.822);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .list {
+    width: 40%;
+    position: absolute;
+    right: 100px;
+    margin: auto;
+  }
+
+  .text {
+    text-align: center;
+    margin-top: 29vh;
+  }
+
+  .btnWidth {
+    width: 50%;
+  }
+
+  .myButton {
+    margin-top: 8vh;
+    width: 75%;
+  }
+
+  .usepass {
+    color: white;
+    .text-input::-moz-placeholder {
+      color: white;
+    }
+
+    .text-input:-ms-input-placeholder {
+      color: white;
+    }
+
+    .text-input::-webkit-input-placeholder {
+      color: white;
+    }
+  }
+}
