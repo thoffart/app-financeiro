@@ -18,7 +18,7 @@ export class ItemsPage {
 
   // itemForm: FormGroup;
   // items: FormArray;
-  check: boolean = false;
+  check: number[] = [];
   itemInput: string;
   list: string[] = [];
 
@@ -31,13 +31,13 @@ export class ItemsPage {
 
   }
 
-  createItem(): FormGroup {
+  // createItem(): FormGroup {
 
-    return this.fb.group({
-      name: '',
-    });
+  //   return this.fb.group({
+  //     name: '',
+  //   });
 
-  }
+  // }
 
   // addItem(): void {
   //
@@ -48,16 +48,25 @@ export class ItemsPage {
   // }
 
   addItem(newItem: string): void {
-
     if(newItem) {
       this.list.push(newItem);
+      this.check.unshift(0);
       this.itemInput = '';
     }
 
   }
+  
 
-  okItem(): void {
-    this.list.push('funfou');
+  okItem(i: number): void {
+    if (this.check[i] == 0){
+      this.check[i] = 1;
+    } else {
+      this.check[i] = 0;
+    }
+  }
+
+  removeItem(i: number): void {
+    this.list.splice(i, 1);
   }
 
 }

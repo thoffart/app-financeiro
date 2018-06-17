@@ -41,14 +41,28 @@
   <!--</form>-->
 
   <ion-list>
-    <ion-item-sliding *ngFor="let token of list?.reverse()">
+    <ion-item-sliding *ngFor="let token of list?.reverse(); let i = index">
 
-      <ion-item (swiperight)='okItem()'> 
-        {{ token }}
+      <ion-item (swipeleft)='okItem(i)'> 
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              {{ token }}
+            </ion-col>
+            <ion-col>
+              <div *ngIf="check[i] == 1">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>              
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-item>
 
       <ion-item-options side="left">
-        <button (click)='okItem()' ion-button>Ok</button>
+        <button (click)='removeItem(i)' ion-button>Remover</button>
+      </ion-item-options>
+
+      <ion-item-options side="right">
       </ion-item-options>
 
     </ion-item-sliding>
