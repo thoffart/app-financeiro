@@ -11,6 +11,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ApiProvider {
   urlcat = "http://127.0.0.1:8000/api/categorias/";
+  urlList = "http://127.0.0.1:8000/api/listas/";
   constructor(public http: HttpClient) {
     console.log("Hello ApiProvider Provider");
   }
@@ -20,4 +21,5 @@ export class ApiProvider {
       return JSON.stringify(res);
     });
   }
+  
 }
