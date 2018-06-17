@@ -1,3 +1,4 @@
+import { GastoPage } from "./../gasto/gasto";
 import { ApiProvider } from "./../../providers/api/api";
 import {
   Component,
@@ -6,7 +7,12 @@ import {
   ElementRef,
   AfterViewInit
 } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController
+} from "ionic-angular";
 import { Chart } from "chart.js";
 import "chartjs-plugin-datalabels";
 import { Observable } from "rxjs/Observable";
@@ -15,7 +21,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/do";
-import "rxjs/add/operator/switch";
+import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/distinctuntilchanged";
 import { from } from "rxjs/observable/from";
 import { map } from "rxjs/operators";
@@ -50,7 +56,8 @@ export class HomePage implements AfterViewInit {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private api: ApiProvider
+    private api: ApiProvider,
+    private modalctrl: ModalController
   ) {}
 
   ngAfterViewInit() {
@@ -60,65 +67,9 @@ export class HomePage implements AfterViewInit {
       this.categorias = this.categorias.categorias;
       console.log(this.categorias);
     });
-    /* Observable.fromEvent(this.searchBar.nativeElement, "keyup")
-      .map((e: any) => {
-        e.target.value;
-        console.log("goi");
-      })
-      .subscribe(); */
-    /*  this.api.getCat().subscribe(res => {
-      this.categorias = res;
-      console.log(res);
-    }); */
-    /*  Observable.fromEvent(this.searchBar.nativeElement, "keyup")
-      .map((e: any) => {})
-      .subscribe(res => {
-        console.log(res);
-      }); */
   }
 
   ionViewDidLoad() {
-    /* this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
-      type: "doughnut",
-      data: {
-        labels: ["Gastos", "Receita"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)"
-            ],
-            hoverBackgroundColor: ["#FF6384", "#36A2EB"]
-          }
-        ]
-      },
-      options: {
-        plugins: {
-          datalabels: {
-            backgroundColor: function(context) {
-              return context.dataset.backgroundColor;
-            },
-            borderColor: "white",
-            borderRadius: 25,
-            borderWidth: 2,
-            color: "white",
-            display: function(context) {
-              var dataset = context.dataset;
-              var count = dataset.data.length;
-              var value = dataset.data[context.dataIndex];
-              return value > count * 1.5;
-            },
-            font: {
-              weight: "bold"
-            },
-            formatter: Math.round
-          }
-        }
-      }
-    });
- */
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
@@ -190,5 +141,10 @@ export class HomePage implements AfterViewInit {
           });
         }
       });
+  }
+
+  addcat(categoria: any) {
+    const modal = this.modalctrl.create(GastoPage, categoria);
+    modal.present();
   }
 }

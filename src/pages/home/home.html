@@ -30,7 +30,7 @@
       <ion-icon name="ios-search-outline" item-left></ion-icon>Search</ion-label>
     <ion-input #search class="searchbar" color="white" id="search" #search></ion-input>
   </ion-item>
-  <ion-card *ngFor="let categoria of categorias">
+  <ion-card *ngFor="let categoria of categorias" (click)="addcat(categoria)">
     <img src="../../assets/imgs/{{categoria.nome}}.jpg" />
     <div class="card-title">{{categoria.nome}}</div>
   </ion-card>

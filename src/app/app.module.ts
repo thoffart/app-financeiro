@@ -1,3 +1,4 @@
+import { GastoPageModule } from "./../pages/gasto/gasto.module";
 import { HttpClientModule } from "@angular/common/http";
 import { RegisterPageModule } from "./../pages/register/register.module";
 import { TabsPageModule } from "./../pages/tabs/tabs.module";
@@ -13,7 +14,7 @@ import { AuthProvider } from "../providers/auth/auth";
 import { HomePageModule } from "../pages/home/home.module";
 import { EditPageModule } from "../pages/edit/edit.module";
 import { TimelinePageModule } from "../pages/timeline/timeline.module";
-import { ApiProvider } from '../providers/api/api';
+import { ApiProvider } from "../providers/api/api";
 
 @NgModule({
   declarations: [MyApp],
@@ -25,6 +26,7 @@ import { ApiProvider } from '../providers/api/api';
     RegisterPageModule,
     HomePageModule,
     TimelinePageModule,
+    GastoPageModule,
     HttpClientModule,
     EditPageModule
   ],
