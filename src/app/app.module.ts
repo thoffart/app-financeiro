@@ -13,7 +13,6 @@ import { EditPageModule } from "../pages/edit/edit.module";
 import { TimelinePageModule } from "../pages/timeline/timeline.module";
 import { ListPageModule } from "../pages/list/list.module";
 import {ItemsPageModule} from "../pages/items/items.module";
-import {FormBuilder, FormGroup, FormArray, ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [MyApp],
@@ -27,8 +26,6 @@ import {FormBuilder, FormGroup, FormArray, ReactiveFormsModule, FormsModule} fro
     EditPageModule,
     ListPageModule,
     ItemsPageModule,
-    ReactiveFormsModule,
-    FormsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
