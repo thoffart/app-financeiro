@@ -14,12 +14,12 @@
 
 
 <ion-content class="card-background-page">
-  <ion-card>
+  <ion-card [class.hide]="noValues">
     <ion-card-header>
       Receita/Gastos
     </ion-card-header>
     <ion-card-content>
-      <canvas #doughnutCanvas></canvas>
+      <canvas #doughnutCanvas ></canvas>
     </ion-card-content>
   </ion-card>
 

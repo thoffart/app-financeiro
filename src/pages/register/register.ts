@@ -55,8 +55,8 @@ export class RegisterPage {
   }
 
   Registrar() {
-    console.log("asioe");
-    console.log(this.registerForm);
+    console.log("registrando");
+    console.log(this.registerForm.value);
     this.auth.postUser(this.registerForm.value).subscribe(response => {
       this.navCtrl.push(TabsPage);
     });

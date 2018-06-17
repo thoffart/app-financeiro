@@ -48,6 +48,10 @@ export class HomePage implements AfterViewInit {
     "Transporte"
   ]; */
   categorias: any = [];
+  gastos: any;
+  receitas: any;
+  noValues = true;
+
   @ViewChild("doughnutCanvas") doughnutCanvas;
   @ViewChild("search", { read: ElementRef })
   searchBar: ElementRef;
@@ -62,11 +66,42 @@ export class HomePage implements AfterViewInit {
 
   ngAfterViewInit() {
     this.api.getCat("-987").subscribe(res => {
-      console.log("toaqui2");
       this.categorias = JSON.parse(res);
       this.categorias = this.categorias.categorias;
-      console.log(this.categorias);
     });
+    
+    let USEREMAIL = 'K1kd@gmail.com';
+
+    this.api.getGastos(USEREMAIL).subscribe(res => { //Pega os gastos e atualiza o grafico
+      let gastos = JSON.parse(res);
+      gastos = gastos.gastos
+      let sum = 0;
+      gastos.forEach(element => {
+        sum += parseFloat(element.valor);
+      });
+      if (sum == 0)
+        return
+      this.gastos = sum;
+      this.doughnutChart.data.datasets[0].data[0] = sum;
+      this.doughnutChart.update();
+      this.noValues = false; //Tem valor no grafico entao mostra o grafico
+    });
+
+    this.api.getReceitas(USEREMAIL).subscribe(res => { //Pega as receitas e atualiza o grafico
+      let rec =  JSON.parse(res);
+      rec = rec.receitas
+      let sum = 0;
+      rec.forEach(element => {
+        sum += parseFloat(element.valor);
+      });
+      if (sum == 0)
+        return
+      this.receitas = sum;
+      this.doughnutChart.data.datasets[0].data[1] = sum;
+      this.doughnutChart.update();
+      this.noValues = false; //Tem valor no grafico entao mostra o grafico
+    });
+    
   }
 
   ionViewDidLoad() {
@@ -77,7 +112,7 @@ export class HomePage implements AfterViewInit {
         datasets: [
           {
             label: "# of Votes",
-            data: [3569, 2290],
+            data: [0, 0],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)"
@@ -118,7 +153,9 @@ export class HomePage implements AfterViewInit {
         }
       }
     });
-    console.log(this.searchBar);
+
+
+
     Observable.fromEvent(this.searchBar.nativeElement, "keyup")
       .map((e: any) => e.target.value)
       .debounceTime(300)
@@ -132,15 +169,15 @@ export class HomePage implements AfterViewInit {
             console.log(this.categorias);
           });
         } else {
-          console.log("to aqui");
           this.api.getCat("-987").subscribe(res => {
-            console.log("toaqui2");
             this.categorias = JSON.parse(res);
             this.categorias = this.categorias.categorias;
             console.log(this.categorias);
           });
         }
       });
+
+
   }
 
   addcat(categoria: any) {
