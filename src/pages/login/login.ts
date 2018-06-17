@@ -45,6 +45,7 @@ export class LoginPage {
   Login() {
     this.auth.authUser(this.loginForm.value).subscribe(
       response => {
+        console.log(response);
         this.navCtrl.push(TabsPage);
       },
       error => {

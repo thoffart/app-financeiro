@@ -24,4 +24,8 @@ export class AuthProvider {
   authUser(usuario: any): Observable<any> {
     return this.http.post(this.url1, usuario);
   }
+
+  getauthUser(): Observable<any> {
+    return this.http.get(this.url1);
+  }
 }

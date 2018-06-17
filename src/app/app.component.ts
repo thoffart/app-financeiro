@@ -1,5 +1,3 @@
-import { TabsPage } from "./../pages/tabs/tabs";
-import { HomePage } from "./../pages/home/home";
 import { LoginPage } from "./../pages/login/login";
 import { Component, ViewChild } from "@angular/core";
 import { Platform, NavController } from "ionic-angular";
@@ -9,7 +7,7 @@ import { SplashScreen } from "@ionic-native/splash-screen";
   templateUrl: "app.html"
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = LoginPage;
   @ViewChild("nav") nav: NavController;
   constructor(
     platform: Platform,

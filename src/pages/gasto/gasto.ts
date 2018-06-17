@@ -11,6 +11,7 @@ import {
   FormControl,
   Validators
 } from "@angular/forms";
+import { AuthProvider } from "../../providers/auth/auth";
 
 /**
  * Generated class for the GastoPage page.
@@ -32,13 +33,15 @@ export class GastoPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewctrl: ViewController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private auth: AuthProvider
   ) {
     this.gastoForm = fb.group({
       descricao: new FormControl(null, [Validators.required]),
       gasto: new FormControl(null, [Validators.required]),
       pagamento: new FormControl(null, [Validators.required])
     });
+    this.auth.getauthUser().subscribe(res => console.log(res));
   }
 
   ionViewDidLoad() {
