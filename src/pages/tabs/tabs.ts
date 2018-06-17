@@ -18,6 +18,7 @@ export class TabsPage {
   financesRoot = "HomePage";
   timelineRoot = "TimelinePage";
   editRoot = "EditPage";
+  listRoot = "ListPage";
 
   constructor(public navCtrl: NavController) {}
 }
