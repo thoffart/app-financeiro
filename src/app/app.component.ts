@@ -1,5 +1,3 @@
-import { TabsPage } from "./../pages/tabs/tabs";
-import { HomePage } from "./../pages/home/home";
 import { LoginPage } from "./../pages/login/login";
 import { Component, ViewChild } from "@angular/core";
 import { Platform, NavController } from "ionic-angular";
