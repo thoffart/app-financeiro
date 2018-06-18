@@ -70,7 +70,7 @@ export class HomePage implements AfterViewInit {
     this.userdata = this.auth.sendUserData();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.atualizagrafico();
   }
 
@@ -150,32 +150,32 @@ export class HomePage implements AfterViewInit {
           });
         }
       });
-
-
   }
 
-  atualizagrafico(){
-    this.api.getGastos(this.userdata.email).subscribe(res => { //Pega os gastos e atualiza o grafico
+  atualizagrafico() {
+    console.log("atualizando grafico");
+    this.api.getGastos(this.userdata.email).subscribe(res => {
+      //Pega os gastos e atualiza o grafico
       this.gastos = JSON.parse(res).gastos;
       let sum = 0;
       this.gastos.forEach(element => {
         sum += parseFloat(element.valor);
       });
-      if (sum == 0)
-        return
+      if (sum == 0 && this.noValues == true) return;
       this.doughnutChart.data.datasets[0].data[0] = sum;
       this.doughnutChart.update();
       this.noValues = false; //Tem valor no grafico entao mostra o grafico
     });
 
-    this.api.getReceitas(this.userdata.email).subscribe(res => { //Pega as receitas e atualiza o grafico
-      this.receitas =  JSON.parse(res).receitas;
+    this.api.getReceitas(this.userdata.email).subscribe(res => {
+      console.log("recebeu receitas");
+      //Pega as receitas e atualiza o grafico
+      this.receitas = JSON.parse(res).receitas;
       let sum = 0;
       this.receitas.forEach(element => {
         sum += parseFloat(element.valor);
       });
-      if (sum == 0)
-        return
+      if (sum == 0 && this.noValues == true) return;
       this.doughnutChart.data.datasets[0].data[1] = sum;
       this.doughnutChart.update();
       this.noValues = false; //Tem valor no grafico entao mostra o grafico
@@ -184,7 +184,7 @@ export class HomePage implements AfterViewInit {
 
   addcat(categoria: any) {
     let modal;
-    
+
     if (categoria.nome != "Receita") {
       modal = this.modalctrl.create(GastoPage, categoria);
     } else {
@@ -194,7 +194,7 @@ export class HomePage implements AfterViewInit {
       this.atualizagrafico();
     });
     modal.present();
-    
+
     /*  const modal = this.modalctrl.create(GastoPage, categoria);
     modal.present(); */
   }
