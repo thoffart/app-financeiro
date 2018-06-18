@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { ApiProvider } from './../../providers/api/api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -20,11 +21,12 @@ export class ListPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private api: ApiProvider
+              private api: ApiProvider,
+              private auth: AuthProvider
   ) {}
 
   ionViewWillEnter(){
-    this.api.getListas("all").subscribe(response => {
+    this.api.getListas(this.auth.sendUserData().email).subscribe(response => {
       this.listas = JSON.parse(response);
       this.listas = this.listas.listas;
     });
@@ -44,7 +46,7 @@ export class ListPage {
 
   deleteList(lista: any) {
     this.api.deleteListas(lista.id).subscribe(response => {
-      this.api.getListas("all").subscribe(response => {
+      this.api.getListas(this.auth.sendUserData().email).subscribe(response => {
         this.listas = JSON.parse(response);
         this.listas = this.listas.listas;
       });
