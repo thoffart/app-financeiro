@@ -9,7 +9,7 @@ import {
   Validators
 } from "@angular/forms";
 import { AuthProvider } from "../../providers/auth/auth";
-import { Response } from "@angular/http";
+import { JsonpModule, Jsonp, Response } from "@angular/http";
 
 /**
  * Generated class for the LoginPage page.

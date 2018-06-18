@@ -1,3 +1,4 @@
+import { ReceitaPage } from "./../receita/receita";
 import { GastoPage } from "./../gasto/gasto";
 import { ApiProvider } from "./../../providers/api/api";
 import {
@@ -144,7 +145,14 @@ export class HomePage implements AfterViewInit {
   }
 
   addcat(categoria: any) {
-    const modal = this.modalctrl.create(GastoPage, categoria);
-    modal.present();
+    if (categoria.nome != "Receita") {
+      const modal = this.modalctrl.create(GastoPage, categoria);
+      modal.present();
+    } else {
+      const modal = this.modalctrl.create(ReceitaPage, categoria);
+      modal.present();
+    }
+    /*  const modal = this.modalctrl.create(GastoPage, categoria);
+    modal.present(); */
   }
 }

@@ -15,6 +15,7 @@ import { HomePageModule } from "../pages/home/home.module";
 import { EditPageModule } from "../pages/edit/edit.module";
 import { TimelinePageModule } from "../pages/timeline/timeline.module";
 import { ApiProvider } from "../providers/api/api";
+import { ReceitaPageModule } from "../pages/receita/receita.module";
 
 @NgModule({
   declarations: [MyApp],
@@ -27,6 +28,7 @@ import { ApiProvider } from "../providers/api/api";
     HomePageModule,
     TimelinePageModule,
     GastoPageModule,
+    ReceitaPageModule,
     HttpClientModule,
     EditPageModule
   ],

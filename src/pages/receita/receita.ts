@@ -6,8 +6,8 @@ import {
   ViewController
 } from "ionic-angular";
 import {
-  FormBuilder,
   FormGroup,
+  FormBuilder,
   FormControl,
   Validators
 } from "@angular/forms";
@@ -15,7 +15,7 @@ import { AuthProvider } from "../../providers/auth/auth";
 import { ApiProvider } from "../../providers/api/api";
 
 /**
- * Generated class for the GastoPage page.
+ * Generated class for the ReceitaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -23,15 +23,15 @@ import { ApiProvider } from "../../providers/api/api";
 
 @IonicPage()
 @Component({
-  selector: "page-gasto",
-  templateUrl: "gasto.html"
+  selector: "page-receita",
+  templateUrl: "receita.html"
 })
-export class GastoPage {
+export class ReceitaPage {
   userdata: any;
   categorianome: string;
   categoriaid: number;
-  gastoForm: FormGroup;
-  gasto: any;
+  receitaForm: FormGroup;
+  receita: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,10 +40,9 @@ export class GastoPage {
     private auth: AuthProvider,
     private api: ApiProvider
   ) {
-    this.gastoForm = fb.group({
+    this.receitaForm = fb.group({
       descricao: new FormControl(null, [Validators.required]),
-      valor: new FormControl(null, [Validators.required]),
-      pagamento: new FormControl(null, [Validators.required])
+      valor: new FormControl(null, [Validators.required])
     });
     /* this.auth.getauthUser().subscribe(res => console.log(res)); */
     this.userdata = this.auth.sendUserData();
@@ -51,19 +50,18 @@ export class GastoPage {
   }
 
   ionViewDidLoad() {
-    console.log("ionViewDidLoad GastoPage");
+    console.log("ionViewDidLoad ReceitaPage");
     this.categorianome = this.navParams.get("nome");
     this.categoriaid = this.navParams.get("id");
     console.log(this.categoriaid);
   }
 
-  addgasto() {
-    console.log(this.gastoForm);
-    this.gasto = this.gastoForm.value;
-    this.gasto.email = this.userdata.email;
-    this.gasto.catid = this.categoriaid;
-    console.log(this.gasto);
-    this.api.postGasto(this.gasto).subscribe(res => {
+  receitaform() {
+    console.log(this.receitaForm);
+    this.receita = this.receitaForm.value;
+    this.receita.email = this.userdata.email;
+    console.log(this.receita);
+    this.api.postReceita(this.receita).subscribe(res => {
       console.log(res);
       this.viewctrl.dismiss();
     });
