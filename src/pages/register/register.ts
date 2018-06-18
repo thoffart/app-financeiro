@@ -1,7 +1,12 @@
 import { TabsPage } from "./../tabs/tabs";
 import { AuthProvider } from "./../../providers/auth/auth";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  AlertController
+} from "ionic-angular";
 import {
   FormGroup,
   FormBuilder,
@@ -38,7 +43,8 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private fb: FormBuilder,
-    private auth: AuthProvider
+    private auth: AuthProvider,
+    private alertctrl: AlertController
   ) {
     this.registerForm = fb.group({
       nome: new FormControl(null, Validators.required),
@@ -58,8 +64,35 @@ export class RegisterPage {
   Registrar() {
     console.log("asioe");
     console.log(this.registerForm);
-    this.auth.postUser(this.registerForm.value).subscribe(response => {
-      this.navCtrl.push(TabsPage);
-    });
+    this.auth.postUser(this.registerForm.value).subscribe(
+      response => {
+        const alert = this.alertctrl.create({
+          title: "Usuario criado!",
+          subTitle: "Conta foi registrada com sucesso!",
+          buttons: [
+            {
+              text: "Ok",
+              handler: () => {
+                this.navCtrl.pop();
+              }
+            }
+          ]
+        });
+        alert.present();
+      },
+      error => {
+        const alert = this.alertctrl.create({
+          title: "Ops!",
+          subTitle: "Algo deu errado",
+          message: "Por favor, tente novamente mais tarde.",
+          buttons: [
+            {
+              text: "Ok"
+            }
+          ]
+        });
+        alert.present();
+      }
+    );
   }
 }

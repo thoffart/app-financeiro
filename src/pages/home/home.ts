@@ -24,6 +24,7 @@ import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/distinctUntilChanged";
+import { AuthProvider } from "../../providers/auth/auth";
 import { from } from "rxjs/observable/from";
 import { map } from "rxjs/operators";
 import { mapTo } from "rxjs/operators";
@@ -49,6 +50,11 @@ export class HomePage implements AfterViewInit {
     "Transporte"
   ]; */
   categorias: any = [];
+  gastos: any = [];
+  receitas: any = [];
+  userdata: any;
+  noValues = true;
+
   @ViewChild("doughnutCanvas") doughnutCanvas;
   @ViewChild("search", { read: ElementRef })
   searchBar: ElementRef;
@@ -58,15 +64,20 @@ export class HomePage implements AfterViewInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     private api: ApiProvider,
-    private modalctrl: ModalController
-  ) {}
+    private modalctrl: ModalController,
+    private auth: AuthProvider
+  ) {
+    this.userdata = this.auth.sendUserData();
+  }
+
+  ionViewWillEnter(){
+    this.atualizagrafico();
+  }
 
   ngAfterViewInit() {
     this.api.getCat("-987").subscribe(res => {
-      console.log("toaqui2");
       this.categorias = JSON.parse(res);
       this.categorias = this.categorias.categorias;
-      console.log(this.categorias);
     });
   }
 
@@ -78,7 +89,7 @@ export class HomePage implements AfterViewInit {
         datasets: [
           {
             label: "# of Votes",
-            data: [3569, 2290],
+            data: [0, 0],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)"
@@ -119,7 +130,6 @@ export class HomePage implements AfterViewInit {
         }
       }
     });
-    console.log(this.searchBar);
     Observable.fromEvent(this.searchBar.nativeElement, "keyup")
       .map((e: any) => e.target.value)
       .debounceTime(300)
@@ -133,26 +143,64 @@ export class HomePage implements AfterViewInit {
             console.log(this.categorias);
           });
         } else {
-          console.log("to aqui");
           this.api.getCat("-987").subscribe(res => {
-            console.log("toaqui2");
             this.categorias = JSON.parse(res);
             this.categorias = this.categorias.categorias;
             console.log(this.categorias);
           });
         }
       });
+
+
+  }
+
+  atualizagrafico(){
+    this.api.getGastos(this.userdata.email).subscribe(res => { //Pega os gastos e atualiza o grafico
+      this.gastos = JSON.parse(res).gastos;
+      let sum = 0;
+      this.gastos.forEach(element => {
+        sum += parseFloat(element.valor);
+      });
+      if (sum == 0)
+        return
+      this.doughnutChart.data.datasets[0].data[0] = sum;
+      this.doughnutChart.update();
+      this.noValues = false; //Tem valor no grafico entao mostra o grafico
+    });
+
+    this.api.getReceitas(this.userdata.email).subscribe(res => { //Pega as receitas e atualiza o grafico
+      this.receitas =  JSON.parse(res).receitas;
+      let sum = 0;
+      this.receitas.forEach(element => {
+        sum += parseFloat(element.valor);
+      });
+      if (sum == 0)
+        return
+      this.doughnutChart.data.datasets[0].data[1] = sum;
+      this.doughnutChart.update();
+      this.noValues = false; //Tem valor no grafico entao mostra o grafico
+    });
   }
 
   addcat(categoria: any) {
+    let modal;
+    
     if (categoria.nome != "Receita") {
-      const modal = this.modalctrl.create(GastoPage, categoria);
-      modal.present();
+      modal = this.modalctrl.create(GastoPage, categoria);
     } else {
-      const modal = this.modalctrl.create(ReceitaPage, categoria);
-      modal.present();
+      modal = this.modalctrl.create(ReceitaPage, categoria);
     }
+    modal.onDidDismiss(() => {
+      this.atualizagrafico();
+    });
+    modal.present();
+    
     /*  const modal = this.modalctrl.create(GastoPage, categoria);
     modal.present(); */
+  }
+
+  addDelay(y: number) {
+    let x = y * 0.25;
+    return x.toString() + "s";
   }
 }

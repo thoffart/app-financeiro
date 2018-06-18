@@ -1,6 +1,11 @@
 import { TabsPage } from "./../tabs/tabs";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  AlertController
+} from "ionic-angular";
 import { RegisterPage } from "../register/register";
 import {
   FormBuilder,
@@ -31,7 +36,8 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private fb: FormBuilder,
-    private auth: AuthProvider
+    private auth: AuthProvider,
+    private alertctrl: AlertController
   ) {
     this.registerpage = RegisterPage;
     this.loginForm = fb.group({
@@ -52,7 +58,16 @@ export class LoginPage {
         this.navCtrl.push(TabsPage);
       },
       error => {
-        console.log(error);
+        const alert = this.alertctrl.create({
+          title: "Ops!",
+          subTitle: error.error,
+          buttons: [
+            {
+              text: "Ok"
+            }
+          ]
+        });
+        alert.present();
       }
     );
   }

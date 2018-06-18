@@ -15,23 +15,24 @@
 
 
 <ion-content class="card-background-page">
-  <ion-card>
+  <ion-card [class.hide]="noValues">
     <ion-card-header>
       Receita/Gastos
     </ion-card-header>
     <ion-card-content>
-      <canvas #doughnutCanvas></canvas>
+      <canvas #doughnutCanvas ></canvas>
     </ion-card-content>
   </ion-card>
 
 
   <ion-item class="label">
     <ion-label floating>
-      <h3>Adicionar gasto:</h3>
+      <h3>Adicionar Gasto/Receita:</h3>
       <ion-icon name="ios-search-outline" item-left></ion-icon>Search</ion-label>
     <ion-input #search class="searchbar" color="white" id="search" #search></ion-input>
   </ion-item>
-  <ion-card *ngFor="let categoria of categorias" (click)="addcat(categoria)">
+  <ion-card *ngFor="let categoria of categorias; let i = index" (click)="addcat(categoria)" class="animated bounceInRight"
+    [ngStyle]="{'animation-delay': addDelay(i)}">
     <img src="../../assets/imgs/{{categoria.nome}}.jpg" />
     <div class="card-title">{{categoria.nome}}</div>
   </ion-card>
