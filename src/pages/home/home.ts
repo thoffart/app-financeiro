@@ -155,4 +155,9 @@ export class HomePage implements AfterViewInit {
     /*  const modal = this.modalctrl.create(GastoPage, categoria);
     modal.present(); */
   }
+
+  addDelay(y: number) {
+    let x = y * 0.25;
+    return x.toString() + "s";
+  }
 }

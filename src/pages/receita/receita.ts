@@ -3,7 +3,8 @@ import {
   IonicPage,
   NavController,
   NavParams,
-  ViewController
+  ViewController,
+  AlertController
 } from "ionic-angular";
 import {
   FormGroup,
@@ -38,7 +39,8 @@ export class ReceitaPage {
     private viewctrl: ViewController,
     private fb: FormBuilder,
     private auth: AuthProvider,
-    private api: ApiProvider
+    private api: ApiProvider,
+    private alertctrl: AlertController
   ) {
     this.receitaForm = fb.group({
       descricao: new FormControl(null, [Validators.required]),
@@ -61,10 +63,36 @@ export class ReceitaPage {
     this.receita = this.receitaForm.value;
     this.receita.email = this.userdata.email;
     console.log(this.receita);
-    this.api.postReceita(this.receita).subscribe(res => {
-      console.log(res);
-      this.viewctrl.dismiss();
-    });
+    this.api.postReceita(this.receita).subscribe(
+      res => {
+        console.log(res);
+        const alert = this.alertctrl.create({
+          title: "Receita registrada!",
+          buttons: [
+            {
+              text: "Ok",
+              handler: () => {
+                this.viewctrl.dismiss();
+              }
+            }
+          ]
+        });
+        alert.present();
+      },
+      error => {
+        const alert = this.alertctrl.create({
+          title: "Ops!",
+          subTitle: "Algo deu errado",
+          message: "Por favor, tente novamente mais tarde.",
+          buttons: [
+            {
+              text: "Ok"
+            }
+          ]
+        });
+        alert.present();
+      }
+    );
   }
 
   fechar() {
