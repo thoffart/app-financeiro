@@ -7,6 +7,11 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>List</ion-title>
   </ion-navbar>
 
@@ -26,14 +31,14 @@
           <ion-col col-7>
             <button ion-button color="light" block (click)="openList(lista)">
               Ver lista {{ i+1 }}
-            </button>       
+            </button>
           </ion-col>
           <ion-col col-5>
             <button ion-button color="dark" (click)="deleteList(lista)">Deletar</button>
           </ion-col>
         </ion-row>
       </ion-grid>
-       
+
     </ion-item>
 
     <button ion-button (click)="createList()" full>Criar nova lista</button>
