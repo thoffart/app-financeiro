@@ -9,6 +9,7 @@ import {
   Validators
 } from "@angular/forms";
 import { AuthProvider } from "../../providers/auth/auth";
+import { Response } from "@angular/http";
 
 /**
  * Generated class for the LoginPage page.
@@ -23,6 +24,7 @@ import { AuthProvider } from "../../providers/auth/auth";
   templateUrl: "login.html"
 })
 export class LoginPage {
+  result: any;
   registerpage: any;
   loginForm: FormGroup;
   constructor(
@@ -44,8 +46,9 @@ export class LoginPage {
 
   Login() {
     this.auth.authUser(this.loginForm.value).subscribe(
-      response => {
+      (response: Response) => {
         console.log(response);
+        this.auth.saveUserData(response);
         this.navCtrl.push(TabsPage);
       },
       error => {

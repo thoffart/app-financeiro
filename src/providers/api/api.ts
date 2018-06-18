@@ -11,6 +11,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class ApiProvider {
   urlcat = "http://127.0.0.1:8000/api/categorias/";
+  urlgasto = "http://127.0.0.1:8000/api/gasto/";
   constructor(public http: HttpClient) {
     console.log("Hello ApiProvider Provider");
   }
@@ -19,5 +20,9 @@ export class ApiProvider {
     return this.http.get(this.urlcat + query).map(res => {
       return JSON.stringify(res);
     });
+  }
+
+  postGasto(data: any): Observable<any> {
+    return this.http.post(this.urlgasto, data);
   }
 }

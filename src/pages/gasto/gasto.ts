@@ -12,6 +12,7 @@ import {
   Validators
 } from "@angular/forms";
 import { AuthProvider } from "../../providers/auth/auth";
+import { ApiProvider } from "../../providers/api/api";
 
 /**
  * Generated class for the GastoPage page.
@@ -26,22 +27,27 @@ import { AuthProvider } from "../../providers/auth/auth";
   templateUrl: "gasto.html"
 })
 export class GastoPage {
+  userdata: any;
   categorianome: string;
   categoriaid: number;
   gastoForm: FormGroup;
+  gasto: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewctrl: ViewController,
     private fb: FormBuilder,
-    private auth: AuthProvider
+    private auth: AuthProvider,
+    private api: ApiProvider
   ) {
     this.gastoForm = fb.group({
       descricao: new FormControl(null, [Validators.required]),
-      gasto: new FormControl(null, [Validators.required]),
+      valor: new FormControl(null, [Validators.required]),
       pagamento: new FormControl(null, [Validators.required])
     });
-    this.auth.getauthUser().subscribe(res => console.log(res));
+    /* this.auth.getauthUser().subscribe(res => console.log(res)); */
+    this.userdata = this.auth.sendUserData();
+    console.log(this.userdata);
   }
 
   ionViewDidLoad() {
@@ -53,6 +59,11 @@ export class GastoPage {
 
   addgasto() {
     console.log(this.gastoForm);
+    this.gasto = this.gastoForm.value;
+    this.gasto.email = this.userdata.email;
+    this.gasto.catid = this.categoriaid;
+    console.log(this.gasto);
+    this.api.postGasto(this.gasto).subscribe(res => console.log(res));
   }
 
   fechar() {

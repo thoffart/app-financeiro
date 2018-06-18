@@ -25,21 +25,21 @@
           <br>
           <ion-item class="label">
             <ion-label color="myWhite" style="font-size:12px;" stacked>Valor</ion-label>
-            <ion-input formControlName="gasto" type="number" inputmode="numeric" min="0"></ion-input>
+            <ion-input formControlName="valor" type="number" inputmode="numeric" min="0"></ion-input>
           </ion-item>
           <br>
         </ion-list>
         <ion-list radio-group formControlName="pagamento">
           <ion-label color="myWhite" style="font-size:12px;" stacked>Pagamento</ion-label>
-          <ion-item>
+          <ion-item *ngIf="userdata.boleto">
             <ion-label>Boleto</ion-label>
             <ion-radio value="b"></ion-radio>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="userdata.ccredito">
             <ion-label>Cartão de Crédito</ion-label>
             <ion-radio value="cc"></ion-radio>
           </ion-item>
-          <ion-item>
+          <ion-item *ngIf="userdata.cdebito">
             <ion-label>Cartão de Débito</ion-label>
             <ion-radio value="cd"></ion-radio>
           </ion-item>
