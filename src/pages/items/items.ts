@@ -26,7 +26,9 @@ export class ItemsPage implements AfterViewInit{
   }
 
   ngAfterViewInit() {
-    this.list.push(this.navParams.get('descricao'));
+    if(this.navParams.data!=null) {
+      this.list.push(this.navParams.get('descricao'));
+    }
   }
 
   addItem(newItem: string): void {
@@ -36,7 +38,6 @@ export class ItemsPage implements AfterViewInit{
       this.itemInput = '';
     }
   }
-  
 
   okItem(i: number): void {
     if (this.check[i] == 0){
@@ -49,6 +50,10 @@ export class ItemsPage implements AfterViewInit{
   removeItem(i: number): void {
     this.list.splice((this.list.length - i - 1), 1);
     this.check.splice((i), 1);
+  }
+
+  finishList() {
+    console.log(this.list.toString());
   }
 
 }

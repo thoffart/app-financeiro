@@ -16,7 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ListPage implements AfterViewInit {
 
-  listas:any[] = [];
+  listas:any = [];
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,

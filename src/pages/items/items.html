@@ -8,19 +8,15 @@
 
   <ion-navbar>
     <ion-title>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            Items
-          </ion-col>
-          <ion-col>
-            <button ion-button>Ok</button>
-          </ion-col>
-          
-        </ion-row>
-      </ion-grid>
-      
+      Items      
     </ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="finishList()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
