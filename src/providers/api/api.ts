@@ -28,5 +28,17 @@ export class ApiProvider {
     });
   }
 
+  postListas(data: any): Observable<any> {
+    return this.http.post(this.urlList, data).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+
+  deleteListas(data: any): Observable<any> {
+    return this.http.delete(this.urlList, data).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+
   
 }

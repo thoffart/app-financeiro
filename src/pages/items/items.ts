@@ -1,6 +1,6 @@
+import { ApiProvider } from './../../providers/api/api';
 import { Component,AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 
 /**
  * Generated class for the ItemsPage page.
@@ -22,18 +22,18 @@ export class ItemsPage implements AfterViewInit{
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
-              public fb: FormBuilder) {
+              public api: ApiProvider) {
   }
 
   ngAfterViewInit() {
-    if(this.navParams.data!=null) {
-      this.list.push(this.navParams.get('descricao'));
+    if(this.navParams.get('lista')) {
+      this.list = this.navParams.get('items');
     }
   }
 
   addItem(newItem: string): void {
     if(newItem) {
-      this.list.push(newItem);
+      this.list.unshift(newItem);
       this.check.unshift(0);
       this.itemInput = '';
     }
@@ -48,12 +48,28 @@ export class ItemsPage implements AfterViewInit{
   }
 
   removeItem(i: number): void {
-    this.list.splice((this.list.length - i - 1), 1);
+    this.list.splice(i, 1);
     this.check.splice((i), 1);
   }
 
   finishList() {
-    console.log(this.list.toString());
+    let data:any;
+    if(this.navParams.get('lista')) {
+      data = {
+        id: this.navParams.get('lista').id,
+        descricao: this.list.toString(),
+        email: "denis@teste3.com"
+      }
+    } else {
+      data = {
+        descricao: this.list.toString(),
+        email: "denis@teste3.com"
+      }
+    }
+
+    this.api.postListas(data).subscribe(response => {
+      this.navCtrl.pop();
+    });
   }
 
 }

@@ -50,7 +50,7 @@
   <!--</form>-->
 
   <ion-list>
-    <ion-item-sliding *ngFor="let token of list?.reverse(); let i = index">
+    <ion-item-sliding *ngFor="let token of list; let i = index">
 
       <ion-item (swipeleft)='okItem(i)'> 
         <ion-grid>
