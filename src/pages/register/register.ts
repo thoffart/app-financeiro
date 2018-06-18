@@ -38,6 +38,7 @@ export class RegisterPage {
   bcheck = true;
   cccheck = true;
   cdcheck = true;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

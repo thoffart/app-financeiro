@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>edit</ion-title>
+    <ion-title>Edit</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,99 +16,54 @@
 <ion-content padding>
   <ion-list no-border>
 
-    <ion-list-header>
-      Gastos
-    </ion-list-header>
+    <form [formGroup]="editForm">
+      <ion-list>
 
-    <ion-item>
-      <ion-icon name='planet' item-start></ion-icon>
-      Mês
-      <ion-note item-end>
+        <ion-list-header>
+          Dados Pessoais
+        </ion-list-header>
 
-      </ion-note>
-    </ion-item>
+        <ion-item>
+          <ion-label stacked>Name</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Date of Birth</ion-label>
+          <ion-input type="date" formControlName="nascimento"></ion-input>
+        </ion-item>
+      </ion-list>
 
-    <ion-item>
-      <ion-label>
-        Categoria
-      </ion-label>
-      <ion-icon name='body' item-start></ion-icon>
-    </ion-item>
+      <ion-list>
 
-    <ion-item>
-      <ion-icon name='leaf' item-start></ion-icon>
-      Débito automático
-    </ion-item>
+        <ion-list-header>
+          Formas de Pagamento
+        </ion-list-header>
 
-    <ion-item>
-      <ion-icon name='flask' item-start></ion-icon>
-      Potions
-      <ion-note item-end>
-        Poisonous
-      </ion-note>
-    </ion-item>
+        <ion-item>
+          <ion-label>Boleto</ion-label>
+          <ion-checkbox formControlName="boleto" [(ngModel)]="bcheck"></ion-checkbox>
+        </ion-item>
 
+        <ion-item>
+          <ion-label>Cartão de Crédito</ion-label>
+          <ion-checkbox formControlName="ccredito" [(ngModel)]="cccheck"></ion-checkbox>
+        </ion-item>
 
+        <ion-item>
+          <ion-label>Cartão de Débito</ion-label>
+          <ion-checkbox formControlName="cdebito" [(ngModel)]="cdcheck"></ion-checkbox>
+        </ion-item>
 
+      </ion-list>
+
+      <button ion-button (click)="Edit()">Atualizar</button>
+    </form>
+  
   </ion-list>
-
-
-  <ion-list>
-
-    <ion-list-header>
-      Activities
-    </ion-list-header>
-
-    <ion-item>
-      Incantation
-      <ion-icon name='color-wand' item-start></ion-icon>
-      <ion-note item-end>Crucio!</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-toggle checked="true"></ion-toggle>
-      <ion-label>
-        Quidditch Practice
-      </ion-label>
-      <ion-icon name='brush' item-start></ion-icon>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-icon name='wine' item-start></ion-icon>
-      Mead Drinking
-      <ion-note item-end>Yes please</ion-note>
-    </ion-item>
-
-
-  </ion-list>
-
-  <ion-list>
-
-    <ion-list-header>
-      Friends
-    </ion-list-header>
-
-    <ion-item>
-      <ion-icon name='flash' item-start></ion-icon>
-      Harry
-      <ion-note item-end>The boy who lived</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name='book' item-start></ion-icon>
-      Hermoine
-      <ion-note item-end>Muggle-born</ion-note>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name='beer' item-start></ion-icon>
-      Ron
-      <ion-note item-end>Brilliant!</ion-note>
-    </ion-item>
-
-
-  </ion-list>
-
-
 </ion-content>

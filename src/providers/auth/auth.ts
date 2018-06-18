@@ -24,7 +24,7 @@ export interface usuariodata {
 @Injectable()
 export class AuthProvider {
   userdata: any;
-  url = "http://127.0.0.1:8000/api/usuarios";
+  url = "http://127.0.0.1:8000/api/usuarios/";
   url1 = "http://127.0.0.1:8000/api/authuser";
   constructor(public http: HttpClient) {
     console.log("Hello AuthProvider Provider");
@@ -32,6 +32,10 @@ export class AuthProvider {
 
   postUser(usuario: any): Observable<any> {
     return this.http.post(this.url, usuario);
+  }
+
+  patchUser(usuario: any): Observable<any> {
+    return this.http.patch(this.url + usuario.email, usuario);
   }
 
   authUser(usuario: any): Observable<any> {
