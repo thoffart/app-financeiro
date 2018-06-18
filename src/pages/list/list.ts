@@ -42,4 +42,15 @@ export class ListPage {
     this.navCtrl.push('ItemsPage', null);
   }
 
+  deleteList(lista: any) {
+    this.api.deleteListas(lista.id).subscribe(response => {
+      this.api.getListas("all").subscribe(response => {
+        this.listas = JSON.parse(response);
+        this.listas = this.listas.listas;
+      });
+    });
+  }
+
+  
+
 }

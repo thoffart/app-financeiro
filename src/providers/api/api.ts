@@ -35,7 +35,7 @@ export class ApiProvider {
   }
 
   deleteListas(data: any): Observable<any> {
-    return this.http.delete(this.urlList, data).map(res => {
+    return this.http.delete(this.urlList + data).map(res => {
       return JSON.stringify(res);
     });
   }

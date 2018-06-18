@@ -23,22 +23,20 @@
     <ion-item *ngFor="let lista of listas?.reverse(); let i = index">
       <ion-grid>
         <ion-row>
-          <ion-col col-8>
-              <button ion-button color="light" block large (click)="openList(lista)">
-                  Ver lista {{ i+1 }}
-                </button>       
-          
+          <ion-col col-7>
+            <button ion-button color="light" block (click)="openList(lista)">
+              Ver lista {{ i+1 }}
+            </button>       
           </ion-col>
-          <ion-col col-4>
-              <button ion-button small color="dark">Deletar</button>
-
+          <ion-col col-5>
+            <button ion-button color="dark" (click)="deleteList(lista)">Deletar</button>
           </ion-col>
         </ion-row>
       </ion-grid>
        
     </ion-item>
 
-    <button ion-button (click)="createList()" full>Criar lista</button>
+    <button ion-button (click)="createList()" full>Criar nova lista</button>
   </ion-list>
 
 </ion-content>
