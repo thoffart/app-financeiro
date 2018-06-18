@@ -10,8 +10,15 @@ import { Injectable } from "@angular/core";
 */
 @Injectable()
 export class ApiProvider {
+  urlbase = "http://127.0.0.1:8000/api/";
+  urlgastos = this.urlbase + "gastos/"
+  urlreceitas = this.urlbase + "receitas/";
+
   urlcat = "http://127.0.0.1:8000/api/categorias/";
   urlList = "http://127.0.0.1:8000/api/listas/";
+  urlgasto = "http://127.0.0.1:8000/api/gasto/";
+  urlreceita = "http://127.0.0.1:8000/api/receita/";
+  
   constructor(public http: HttpClient) {
     console.log("Hello ApiProvider Provider");
   }
@@ -30,15 +37,40 @@ export class ApiProvider {
 
   postListas(data: any): Observable<any> {
     return this.http.post(this.urlList, data).map(res => {
+            return JSON.stringify(res);
+    });
+  }
+
+  getGastos(query: string): Observable<any> {
+    return this.http.get(this.urlgastos + query).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+  
+  getReceitas(query: string): Observable<any> {
+    return this.http.get(this.urlreceitas + query).map(res => {
       return JSON.stringify(res);
     });
   }
 
   deleteListas(data: any): Observable<any> {
     return this.http.delete(this.urlList + data).map(res => {
-      return JSON.stringify(res);
+          return JSON.stringify(res);
     });
   }
 
+
+  deleteGasto(id: string): Observable<any> {
+    return this.http.delete(this.urlgastos + id).map(res => {
+      return JSON.stringify(res);
+    });
+  }
   
+  postGasto(data: any): Observable<any> {
+    return this.http.post(this.urlgasto, data);
+  }
+
+  postReceita(data: any): Observable<any> {
+    return this.http.post(this.urlreceita, data);
+  }
 }

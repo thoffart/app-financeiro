@@ -17,6 +17,7 @@ import { TimelinePageModule } from "../pages/timeline/timeline.module";
 import { ApiProvider } from "../providers/api/api";
 import { ListPageModule } from "../pages/list/list.module";
 import {ItemsPageModule} from "../pages/items/items.module";
+import { ReceitaPageModule } from "../pages/receita/receita.module";
 
 @NgModule({
   declarations: [MyApp],
@@ -29,6 +30,7 @@ import {ItemsPageModule} from "../pages/items/items.module";
     HomePageModule,
     TimelinePageModule,
     GastoPageModule,
+    ReceitaPageModule,
     HttpClientModule,
     EditPageModule,
     ListPageModule,
