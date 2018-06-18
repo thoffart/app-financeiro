@@ -22,13 +22,13 @@
         <h5>{{gasto.categoria.nome}}</h5>
         <p>{{gasto.descricao}}</p>
         <ion-note item-end>
-          <p item-end text-right>R${{gasto.valor}}.23</p>
-          <p item-end >{{gasto.created_at}}</p>
+          <p item-end text-right>R${{gasto.valor}}</p>
+          <p item-end>{{gasto.created_at}}</p>
         </ion-note>
       </ion-item>
       <ion-item-options>
         <button ion-button (click)="delete(gasto)" color="danger">
-        <ion-icon name="trash"></ion-icon>
+          <ion-icon name="trash"></ion-icon>
           Delete
         </button>
       </ion-item-options>
