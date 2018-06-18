@@ -20,6 +20,20 @@
       Listas
     </ion-list-header>
 
+    <ion-item *ngFor="let lista of listas; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-8>
+            {{ i+1 }}
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button (click)="openList(lista)">Ver</button>              
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-item>
+
     <button ion-button (click)="createList()" full>Criar lista</button>
   </ion-list>
 

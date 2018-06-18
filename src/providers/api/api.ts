@@ -21,5 +21,12 @@ export class ApiProvider {
       return JSON.stringify(res);
     });
   }
+
+  getListas(query: string): Observable<any> {
+    return this.http.get(this.urlList + query).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+
   
 }

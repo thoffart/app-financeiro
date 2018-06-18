@@ -30,7 +30,6 @@ import {ItemsPageModule} from "../pages/items/items.module";
     TimelinePageModule,
     GastoPageModule,
     HttpClientModule,
-    EditPageModule
     EditPageModule,
     ListPageModule,
     ItemsPageModule,

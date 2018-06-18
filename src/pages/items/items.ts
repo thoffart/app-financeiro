@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 
@@ -14,38 +14,20 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
   selector: 'page-items',
   templateUrl: 'items.html',
 })
-export class ItemsPage {
+export class ItemsPage implements AfterViewInit{
 
-  // itemForm: FormGroup;
-  // items: FormArray;
   check: number[] = [];
   itemInput: string;
   list: string[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fb: FormBuilder) {
-
-    // this.itemForm = this.fb.group({
-    //   listName: '',
-    //   items: this.fb.array([ this.createItem() ]),
-    // });
-
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public fb: FormBuilder) {
   }
 
-  // createItem(): FormGroup {
-
-  //   return this.fb.group({
-  //     name: '',
-  //   });
-
-  // }
-
-  // addItem(): void {
-  //
-  //   this.items = this.itemForm.get('items') as FormArray;
-  //   this.items.push(this.createItem());
-  //   this.check = true;
-  //
-  // }
+  ngAfterViewInit() {
+    this.list.push(this.navParams.get('descricao'));
+  }
 
   addItem(newItem: string): void {
     if(newItem) {
@@ -53,7 +35,6 @@ export class ItemsPage {
       this.check.unshift(0);
       this.itemInput = '';
     }
-
   }
   
 
@@ -66,7 +47,8 @@ export class ItemsPage {
   }
 
   removeItem(i: number): void {
-    this.list.splice(i, 1);
+    this.list.splice((this.list.length - i - 1), 1);
+    this.check.splice((i), 1);
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ApiProvider } from './../../providers/api/api';
+import { Component, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -13,17 +14,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-list',
   templateUrl: 'list.html',
 })
-export class ListPage {
+export class ListPage implements AfterViewInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  listas:any[] = [];
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private api: ApiProvider
+  ) {}
+
+  ngAfterViewInit() {
+    this.api.getListas("all").subscribe(response => {
+      this.listas = JSON.parse(response);
+      if (this.listas) {
+        this.listas = this.listas.listas;
+      }
+    });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListPage');
+  openList(lista: any) {
+    this.navCtrl.push('ItemsPage', lista);
   }
 
   createList() {
-    this.navCtrl.push('ItemsPage');
+    this.navCtrl.push('ItemsPage', null);
   }
 
 }
