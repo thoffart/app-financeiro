@@ -36,4 +36,10 @@ export class ApiProvider {
       return JSON.stringify(res);
     });
   }
+
+  deleteGasto(id: string): Observable<any> {
+    return this.http.delete(this.urlgastos + id).map(res => {
+      return JSON.stringify(res);
+    });
+  }
 }

@@ -48,8 +48,9 @@ export class HomePage implements AfterViewInit {
     "Transporte"
   ]; */
   categorias: any = [];
-  gastos: any;
-  receitas: any;
+  gastos: any = [];
+  receitas: any = [];
+  
   noValues = true;
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
@@ -70,33 +71,29 @@ export class HomePage implements AfterViewInit {
       this.categorias = this.categorias.categorias;
     });
     
-    let USEREMAIL = 'K1kd@gmail.com';
+    let USEREMAIL = '05t2@gmail.com';
 
     this.api.getGastos(USEREMAIL).subscribe(res => { //Pega os gastos e atualiza o grafico
-      let gastos = JSON.parse(res);
-      gastos = gastos.gastos
+      this.gastos = JSON.parse(res).gastos;
       let sum = 0;
-      gastos.forEach(element => {
+      this.gastos.forEach(element => {
         sum += parseFloat(element.valor);
       });
       if (sum == 0)
         return
-      this.gastos = sum;
       this.doughnutChart.data.datasets[0].data[0] = sum;
       this.doughnutChart.update();
       this.noValues = false; //Tem valor no grafico entao mostra o grafico
     });
 
     this.api.getReceitas(USEREMAIL).subscribe(res => { //Pega as receitas e atualiza o grafico
-      let rec =  JSON.parse(res);
-      rec = rec.receitas
+      this.receitas =  JSON.parse(res).receitas;
       let sum = 0;
-      rec.forEach(element => {
+      this.receitas.forEach(element => {
         sum += parseFloat(element.valor);
       });
       if (sum == 0)
         return
-      this.receitas = sum;
       this.doughnutChart.data.datasets[0].data[1] = sum;
       this.doughnutChart.update();
       this.noValues = false; //Tem valor no grafico entao mostra o grafico
@@ -153,9 +150,6 @@ export class HomePage implements AfterViewInit {
         }
       }
     });
-
-
-
     Observable.fromEvent(this.searchBar.nativeElement, "keyup")
       .map((e: any) => e.target.value)
       .debounceTime(300)
