@@ -44,6 +44,8 @@ export class ApiProvider {
     return this.http.delete(this.urlgastos + id).map(res => {
       return JSON.stringify(res);
     });
+  }
+
   postGasto(data: any): Observable<any> {
     return this.http.post(this.urlgasto, data);
   }
