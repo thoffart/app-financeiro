@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { ApiProvider } from './../../providers/api/api';
 import { Component,AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -22,8 +23,9 @@ export class ItemsPage implements AfterViewInit{
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
-              public api: ApiProvider) {
-  }
+              private api: ApiProvider,
+              private auth: AuthProvider
+  ) { }
 
   ngAfterViewInit() {
     if(this.navParams.get('lista')) {
@@ -58,12 +60,12 @@ export class ItemsPage implements AfterViewInit{
       data = {
         id: this.navParams.get('lista').id,
         descricao: this.list.toString(),
-        email: "denis@teste3.com"
+        email: this.auth.sendUserData().email
       }
     } else {
       data = {
         descricao: this.list.toString(),
-        email: "denis@teste3.com"
+        email: this.auth.sendUserData().email
       }
     }
 
