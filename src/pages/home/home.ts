@@ -23,7 +23,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/switchMap";
-import "rxjs/add/operator/distinctuntilchanged";
+import "rxjs/add/operator/distinctUntilChanged";
 import { from } from "rxjs/observable/from";
 import { map } from "rxjs/operators";
 import { mapTo } from "rxjs/operators";
