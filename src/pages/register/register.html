@@ -12,15 +12,21 @@
 </ion-header>
 
 
-<ion-content padding class="Rslides">
-  <ion-slides pager>
-    <ion-slide *ngFor="let slide of slides">
+
+<ion-slides pager>
+  <ion-slide *ngFor="let slide of slides">
+    <ion-content padding class="Rslides">
       <div class="elementos">
         <i [class]="slide.icon" style="font-size:120px; color:#ebebeb" aria-hidden="true"></i>
         <h1 style="color:#ebebeb;" [innerHTML]="slide.description"></h1>
       </div>
-    </ion-slide>
-    <ion-slide>
+    </ion-content>
+  </ion-slide>
+  <ion-slide>
+    <ion-content padding class="Rslides">
+      <br>
+      <br>
+      <br>
       <form [formGroup]="registerForm">
         <ion-list>
           <ion-list-header>
@@ -66,6 +72,6 @@
 
         <button ion-button (click)="Registrar()" [disabled]="!registerForm.valid">Submit</button>
       </form>
-    </ion-slide>
-  </ion-slides>
-</ion-content>
+    </ion-content>
+  </ion-slide>
+</ion-slides>
