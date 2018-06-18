@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Edit</ion-title>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,19 +25,19 @@
       <ion-list>
 
         <ion-list-header>
-          Dados Pessoais
+          Editar Dados Pessoais
         </ion-list-header>
 
         <ion-item>
           <ion-label stacked>Name</ion-label>
           <ion-input type="text" formControlName="nome"></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label stacked>Password</ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label stacked>Date of Birth</ion-label>
           <ion-input type="date" formControlName="nascimento"></ion-input>
@@ -64,6 +69,6 @@
 
       <button ion-button (click)="Edit()">Atualizar</button>
     </form>
-  
+
   </ion-list>
 </ion-content>
