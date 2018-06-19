@@ -12,8 +12,8 @@
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="finishList()">
-        <ion-icon name="checkmark"></ion-icon>
+      <button ion-button large icon-only (click)="saveList()">
+        Salvar
       </button>
     </ion-buttons>
 
@@ -53,26 +53,13 @@
     <ion-item-sliding *ngFor="let token of list; let i = index">
 
       <ion-item (swipeleft)='okItem(i)'> 
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              {{ token }}
-            </ion-col>
-            <ion-col>
-              <div *ngIf="check[i] == 1">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>              
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        {{ token }}
       </ion-item>
 
-      <ion-item-options side="left">
+      <ion-item-options side="right">
         <button (click)='removeItem(i)' ion-button>Remover</button>
       </ion-item-options>
 
-      <ion-item-options side="right">
-      </ion-item-options>
 
     </ion-item-sliding>
   </ion-list>
@@ -102,5 +89,8 @@
     </ion-grid>
 
   </form>
+
+  <button ion-button (click)="finishList()" full>Finalizar lista</button>
+
 
 </ion-footer>

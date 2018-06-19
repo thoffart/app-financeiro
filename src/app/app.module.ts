@@ -1,3 +1,4 @@
+import { ListModalPageModule } from "./../pages/list-modal/list-modal.module";
 import { GastoPageModule } from "./../pages/gasto/gasto.module";
 import { HttpClientModule } from "@angular/common/http";
 import { RegisterPageModule } from "./../pages/register/register.module";
@@ -42,6 +43,7 @@ import { SidereceitaPageModule } from "../pages/sidereceita/sidereceita.module";
     EditGastoPageModule,
     EditReceitaPageModule,
     SidegastoPageModule,
+    ListModalPageModule,
     SidereceitaPageModule
   ],
   bootstrap: [IonicApp],

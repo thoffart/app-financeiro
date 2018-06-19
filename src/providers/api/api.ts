@@ -23,13 +23,13 @@ export class ApiProvider {
     console.log("Hello ApiProvider Provider");
   }
 
-  updateReceita(data: any){
+  updateReceita(data: any) {
     return this.http.put(this.urlreceitas, data).map(res => {
       return JSON.stringify(res);
     });
   }
 
-  updateGasto(data: any){
+  updateGasto(data: any) {
     return this.http.put(this.urlgastos, data).map(res => {
       return JSON.stringify(res);
     });
@@ -88,7 +88,7 @@ export class ApiProvider {
   deleteReceita(id: any): Observable<any> {
     return this.http.delete(this.urlreceita + id);
   }
-  
+
   getReceitasFilter(query: string, query2: string): Observable<any> {
     return this.http
       .get("http://127.0.0.1:8000/api/receitas/" + query + "/" + query2)
@@ -112,5 +112,9 @@ export class ApiProvider {
       .map(res => {
         return JSON.stringify(res);
       });
+  }
+
+  getCategoriasLista(): Observable<any> {
+    return this.http.get("http://127.0.0.1:8000/api/categoriass/");
   }
 }
