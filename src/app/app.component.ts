@@ -5,12 +5,16 @@ import { Platform, NavController, MenuController } from "ionic-angular";
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { EditPage } from "../pages/edit/edit";
+import { SidereceitaPage } from "../pages/sidereceita/sidereceita";
+import { SidegastoPage } from "../pages/sidegasto/sidegasto";
 @Component({
   templateUrl: "app.html"
 })
 export class MyApp {
   tabsPage = TabsPage;
   settingsPage = EditPage;
+  sideReceita = SidereceitaPage;
+  sideGasto = SidegastoPage;
   loginPage: any = LoginPage;
   @ViewChild("nav") nav: NavController;
   constructor(
