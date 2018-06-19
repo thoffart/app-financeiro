@@ -23,6 +23,18 @@ export class ApiProvider {
     console.log("Hello ApiProvider Provider");
   }
 
+  updateReceita(data: any){
+    return this.http.put(this.urlreceitas, data).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+
+  updateGasto(data: any){
+    return this.http.put(this.urlgastos, data).map(res => {
+      return JSON.stringify(res);
+    });
+  }
+
   getCat(query: string): Observable<any> {
     return this.http.get(this.urlcat + query).map(res => {
       return JSON.stringify(res);
@@ -72,5 +84,9 @@ export class ApiProvider {
 
   postReceita(data: any): Observable<any> {
     return this.http.post(this.urlreceita, data);
+  }
+
+  deleteReceita(id: any): Observable<any> {
+    return this.http.delete(this.urlreceitas + id);
   }
 }

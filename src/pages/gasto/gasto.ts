@@ -54,6 +54,7 @@ export class GastoPage {
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad GastoPage");
+    console.log(this.navParams);
     this.categorianome = this.navParams.get("nome");
     this.categoriaid = this.navParams.get("id");
     console.log(this.categoriaid);

@@ -18,6 +18,8 @@ import { ApiProvider } from "../providers/api/api";
 import { ListPageModule } from "../pages/list/list.module";
 import {ItemsPageModule} from "../pages/items/items.module";
 import { ReceitaPageModule } from "../pages/receita/receita.module";
+import { EditGastoPageModule } from "../pages/edit-gasto/edit-gasto.module";
+import { EditReceitaPageModule } from "../pages/edit-receita/edit-receita.module";
 
 @NgModule({
   declarations: [MyApp],
@@ -35,6 +37,8 @@ import { ReceitaPageModule } from "../pages/receita/receita.module";
     EditPageModule,
     ListPageModule,
     ItemsPageModule,
+    EditGastoPageModule,
+    EditReceitaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
