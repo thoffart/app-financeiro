@@ -14,13 +14,13 @@
 
 
 <ion-content padding text-center>
-  <ion-card padding>
+  <ion-card>
     <ion-card-content>
       <form [formGroup]="gastoForm">
-        <ion-list inset>
-          <ion-item class="label">
+        <ion-list>
+          <ion-item>
             <ion-label color="myWhite" style="font-size:12px;" stacked>Descrição</ion-label>
-            <ion-textarea formControlName="descricao" type="text"></ion-textarea>
+            <ion-textarea type="text" formControlName="descricao"></ion-textarea>
           </ion-item>
           <br>
           <ion-item class="label">
@@ -48,7 +48,7 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button ion-button small outline color="danger" type="submit" (click)="addgasto()" [disabled]="!gastoForm.valid">Salvar</button>
+        <button ion-button small outline type="submit" (click)="addgasto()" [disabled]="!gastoForm.valid">Salvar</button>
       </ion-col>
     </ion-row>
   </ion-card>

@@ -18,6 +18,8 @@ import { ApiProvider } from "../providers/api/api";
 import { ListPageModule } from "../pages/list/list.module";
 import { ItemsPageModule } from "../pages/items/items.module";
 import { ReceitaPageModule } from "../pages/receita/receita.module";
+import { EditGastoPageModule } from "../pages/edit-gasto/edit-gasto.module";
+import { EditReceitaPageModule } from "../pages/edit-receita/edit-receita.module";
 import { SidegastoPageModule } from "../pages/sidegasto/sidegasto.module";
 import { SidereceitaPageModule } from "../pages/sidereceita/sidereceita.module";
 
@@ -37,6 +39,8 @@ import { SidereceitaPageModule } from "../pages/sidereceita/sidereceita.module";
     EditPageModule,
     ListPageModule,
     ItemsPageModule,
+    EditGastoPageModule,
+    EditReceitaPageModule
     SidegastoPageModule,
     SidereceitaPageModule
   ],
