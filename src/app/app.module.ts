@@ -40,7 +40,7 @@ import { SidereceitaPageModule } from "../pages/sidereceita/sidereceita.module";
     ListPageModule,
     ItemsPageModule,
     EditGastoPageModule,
-    EditReceitaPageModule
+    EditReceitaPageModule,
     SidegastoPageModule,
     SidereceitaPageModule
   ],

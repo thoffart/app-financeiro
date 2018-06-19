@@ -86,7 +86,7 @@ export class ApiProvider {
   }
 
   deleteReceita(id: any): Observable<any> {
-    return this.http.delete(this.urlreceitas + id);
+    return this.http.delete(this.urlreceita + id);
   }
   
   getReceitasFilter(query: string, query2: string): Observable<any> {
