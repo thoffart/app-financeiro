@@ -1,7 +1,7 @@
-import { AuthProvider } from './../../providers/auth/auth';
-import { ApiProvider } from './../../providers/api/api';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthProvider } from "./../../providers/auth/auth";
+import { ApiProvider } from "./../../providers/api/api";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 /**
  * Generated class for the ListPage page.
@@ -12,20 +12,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-list',
-  templateUrl: 'list.html',
+  selector: "page-list",
+  templateUrl: "list.html"
 })
 export class ListPage {
+  listas: any = [];
 
-  listas:any = [];
-
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              private api: ApiProvider,
-              private auth: AuthProvider
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private api: ApiProvider,
+    private auth: AuthProvider
   ) {}
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.api.getListas(this.auth.sendUserData().email).subscribe(response => {
       this.listas = JSON.parse(response);
       this.listas = this.listas.listas;
@@ -33,15 +33,15 @@ export class ListPage {
   }
 
   openList(lista: any) {
-    let items = lista.descricao.split(',');
-    this.navCtrl.push('ItemsPage', {
-      'items': items, 
-      'lista': lista
+    let items = lista.descricao.split(",");
+    this.navCtrl.push("ItemsPage", {
+      items: items,
+      lista: lista
     });
   }
 
   createList() {
-    this.navCtrl.push('ItemsPage', null);
+    this.navCtrl.push("ItemsPage", null);
   }
 
   deleteList(lista: any) {
@@ -52,7 +52,4 @@ export class ListPage {
       });
     });
   }
-
-  
-
 }
