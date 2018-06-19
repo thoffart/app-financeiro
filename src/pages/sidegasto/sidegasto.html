@@ -21,10 +21,34 @@
 <ion-content padding>
   <ion-item>
     <ion-label>Filtrar Por</ion-label>
-    <ion-select [(ngModel)]="sortby" interface="popover">
+    <ion-select [(ngModel)]="sortby" interface="popover" (ionChange)="onChange()">
       <ion-option value="data">Data</ion-option>
       <ion-option value="valor">Valor</ion-option>
       <ion-option value="categoria">Categoria</ion-option>
+      <ion-option value="pagamento">Pagamento</ion-option>
     </ion-select>
   </ion-item>
+  <ion-list>
+    <!-- <ion-list-header>Today</ion-list-header> -->
+    <ion-item-sliding *ngFor="let gasto of gastos">
+      <ion-item>
+        <!-- <i item-start class="fa fa-thermometer-full" aria-hidden="true"></i> -->
+        <h5>{{gasto.categoria.nome}}</h5>
+        <p *ngIf="gasto.pagamento ==  'b' "> Boleto </p>
+        <p *ngIf="gasto.pagamento ==  'cc' "> Cartao de Crédito </p>
+        <p *ngIf="gasto.pagamento ==  'cd'"> Cartão de Débito </p>
+        <p>{{gasto.descricao}}</p>
+        <ion-note item-end>
+          <p item-end text-right>R${{gasto.valor}}</p>
+          <p item-end>{{gasto.created_at}}</p>
+        </ion-note>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button (click)="delete(gasto)" color="danger">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

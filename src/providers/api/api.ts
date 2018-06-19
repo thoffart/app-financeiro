@@ -88,4 +88,13 @@ export class ApiProvider {
         return JSON.stringify(res);
       });
   }
+
+  getGastosFilter(query: string, query2: string): Observable<any> {
+    console.log("aon" + query2);
+    return this.http
+      .get("http://127.0.0.1:8000/api/gastoss/" + query + "/" + query2)
+      .map(res => {
+        return JSON.stringify(res);
+      });
+  }
 }
