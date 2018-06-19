@@ -16,10 +16,12 @@ import { EditPageModule } from "../pages/edit/edit.module";
 import { TimelinePageModule } from "../pages/timeline/timeline.module";
 import { ApiProvider } from "../providers/api/api";
 import { ListPageModule } from "../pages/list/list.module";
-import {ItemsPageModule} from "../pages/items/items.module";
+import { ItemsPageModule } from "../pages/items/items.module";
 import { ReceitaPageModule } from "../pages/receita/receita.module";
 import { EditGastoPageModule } from "../pages/edit-gasto/edit-gasto.module";
 import { EditReceitaPageModule } from "../pages/edit-receita/edit-receita.module";
+import { SidegastoPageModule } from "../pages/sidegasto/sidegasto.module";
+import { SidereceitaPageModule } from "../pages/sidereceita/sidereceita.module";
 
 @NgModule({
   declarations: [MyApp],
@@ -39,6 +41,8 @@ import { EditReceitaPageModule } from "../pages/edit-receita/edit-receita.module
     ItemsPageModule,
     EditGastoPageModule,
     EditReceitaPageModule
+    SidegastoPageModule,
+    SidereceitaPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
