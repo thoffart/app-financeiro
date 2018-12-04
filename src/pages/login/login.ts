@@ -1,20 +1,11 @@
-import { TabsPage } from "./../tabs/tabs";
-import { Component } from "@angular/core";
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  AlertController
-} from "ionic-angular";
-import { RegisterPage } from "../register/register";
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators
-} from "@angular/forms";
-import { AuthProvider } from "../../providers/auth/auth";
-import { JsonpModule, Jsonp, Response } from "@angular/http";
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Response } from '@angular/http';
+import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { AuthProvider } from '../../providers/auth/auth';
+import { RegisterPage } from '../register/register';
+import { TabsPage } from './../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -58,6 +49,7 @@ export class LoginPage {
         this.navCtrl.push(TabsPage);
       },
       error => {
+        console.log(error);
         const alert = this.alertctrl.create({
           title: "Ops!",
           subTitle: error.error,
@@ -72,5 +64,5 @@ export class LoginPage {
     );
   }
 
-  loadRegisterpage() {}
+  loadRegisterpage() { }
 }

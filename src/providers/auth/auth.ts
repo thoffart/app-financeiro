@@ -1,7 +1,8 @@
-import { Observable } from "rxjs/Observable";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import "rxjs/add/operator/catch";
+import 'rxjs/add/operator/catch';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the AuthProvider provider.
@@ -39,7 +40,10 @@ export class AuthProvider {
   }
 
   authUser(usuario: any): Observable<any> {
-    return this.http.post(this.url1, usuario);
+    return this.http.post(this.url1, usuario).map((res: any) => {
+      console.log(res);
+      res.usuario[0];
+    });
   }
 
   getauthUser(): Observable<any> {
